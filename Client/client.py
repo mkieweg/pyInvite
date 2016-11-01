@@ -1,6 +1,6 @@
-import sys, getopt, socket
-import Client.registerClient
-import Client.sendInvite
+import sys
+import getopt
+import Client.bootstrapclient
 
 
 try:
@@ -20,13 +20,5 @@ for o, a in opts:
         print("Usage: client.py -s <serveraddress> without brackets")
         sys.exit(0)
 
-r = Client.registerClient.RegisterClient(serveraddress, 40000)
-r.register()
-s = Client.sendInvite.SendInvite
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind(("0.0.0.0", 50000))
-buffersize = 1024
-while 1:
-    data = sock.recvfrom(buffersize)
-    if data:
-        s.fire(data)
+bs = Client.bootstrapclient.BootstrapClient()
+bs.bootstrap(serveraddress)

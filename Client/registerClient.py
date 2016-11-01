@@ -1,6 +1,5 @@
 import socket
-
-from Util import getIpAddress
+import Util.getIpAddress
 
 
 class RegisterClient:
@@ -15,6 +14,6 @@ class RegisterClient:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     def register(self):
-        gip = getIpAddress.GetIpAddress()
+        gip = Util.getIpAddress.GetIpAddress()
         ownip = gip.get_ip_address()
         self.s.sendto(bytes(ownip, 'utf-8'), (self.serveraddress, self.serverport))
