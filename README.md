@@ -12,3 +12,7 @@ client.py -s <cnc server> -i <local ip address>
   -s The command and control servers IP address
   -i The clients local IP address
 ```
+
+##Startup
+First start the server on the cnc machine. Then start the clients on the bots. In this state it is nessecary that the server is startet before the clients. Clients register themselves by the server and there is no mechanism implemented to repeat registration after startup.
+After startup the bot net works autonomous
