@@ -14,5 +14,10 @@ client.py -s <cnc server> -i <local ip address>
 ```
 
 ##Startup
-First start the server on the cnc machine. Then start the clients on the bots. In this state it is nessecary that the server is startet before the clients. Clients register themselves by the server and there is no mechanism implemented to repeat registration after startup.
+1. First start the server on the cnc machine. 
+2. Then start the clients on the bots. 
+
+###Take care of the right sequence
+In this state it is nessecary that the server is startet before the clients. Clients register themselves by the server and there is no mechanism implemented to repeat registration after startup.
+
 After startup the bot net works autonomous
