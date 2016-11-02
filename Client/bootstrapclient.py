@@ -6,8 +6,8 @@ import registerClient
 
 class BootstrapClient:
     @staticmethod
-    def bootstrap(serveraddress):
-        r = registerClient.RegisterClient(serveraddress, 40000)
+    def bootstrap(serveraddress, local_ip):
+        r = registerClient.RegisterClient(serveraddress, 40000, local_ip)
         r.register()
         s = sendInvite.SendInvite
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
