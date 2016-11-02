@@ -40,11 +40,11 @@ def fire_thread():
 try:
     opts, args = getopt.getopt(sys.argv[1:], "h:s:")
 except getopt.GetoptError as e:
-    print("Usage: client.py -s <ip of sip server> -i <local ip address> without brackets")
+    print("Usage: client.py -s <ip of sip server> without brackets")
     print("Use client.py -h for help")
     sys.exit(2)
-if opts.__len__() < 2:
-    print("Usage: client.py -s <ip of sip server> -i <local ip address> without brackets")
+if opts.__len__() is 0:
+    print("Usage: client.py -s <ip of sip server> without brackets")
     print("Use client.py -h for help")
     sys.exit(2)
 for o, a in opts:
