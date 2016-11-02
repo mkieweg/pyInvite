@@ -1,7 +1,7 @@
 import threading, sys, getopt, socket
-import Server.fire
+import fire
 
-f = Server.fire.Fire()
+f = fire.Fire()
 serverdata = []
 sipserver = ""
 

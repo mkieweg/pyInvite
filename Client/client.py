@@ -1,6 +1,6 @@
 import sys
 import getopt
-import Client.bootstrapclient
+import bootstrapclient
 
 
 try:
@@ -20,5 +20,5 @@ for o, a in opts:
         print("Usage: client.py -s <serveraddress> without brackets")
         sys.exit(0)
 
-bs = Client.bootstrapclient.BootstrapClient()
+bs = bootstrapclient.BootstrapClient()
 bs.bootstrap(serveraddress)
