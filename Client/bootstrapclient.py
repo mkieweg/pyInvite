@@ -16,4 +16,5 @@ class BootstrapClient:
         while 1:
             data = sock.recvfrom(buffersize)
             if data:
-                s.fire(data)
+                decoded = data[0].decode("utf-8")
+                s.fire(decoded)
