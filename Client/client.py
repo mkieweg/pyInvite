@@ -1,8 +1,21 @@
 import sys
 import getopt
 import socket
+import threading
 import registerClient
 import sendInvite
+
+running = False
+s = sendInvite.SendInvite
+data = []
+
+
+def fire_thread(payload):
+    """Call sendInvite to fire payload to the SIP server"""
+    global running
+    running = True
+    while running:
+        s.fire(payload)
 
 
 try:
@@ -26,12 +39,15 @@ for o, a in opts:
 
 r = registerClient.RegisterClient(serveraddress, 40000, local_ip)
 r.register()
-s = sendInvite.SendInvite
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(("0.0.0.0", 50000))
 buffersize = 1024
-while 1:
+while not data:
     data = sock.recvfrom(buffersize)
-    if data:
-        decoded = data[0].decode("utf-8")
-        s.fire(decoded)
+decoded = data[0].decode("utf-8")
+fire_thread_0 = threading.Thread(target=fire_thread, args=(decoded))
+fire_thread_1 = threading.Thread(target=fire_thread, args=(decoded))
+fire_thread_2 = threading.Thread(target=fire_thread, args=(decoded))
+fire_thread_0.start()
+fire_thread_1.start()
+fire_thread_2.start()

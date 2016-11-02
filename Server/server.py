@@ -1,8 +1,9 @@
+import queue
 import threading, sys, getopt, socket
 import fire
 
 f = fire.Fire()
-serverdata = []
+serverdata = queue.Queue()
 sipserver = ""
 
 
@@ -10,7 +11,7 @@ def register_thread():
     """Provide UDP port awaiting client IP addresses and processing them into serverdata"""
     global serverdata
     print("Register Thread")
-    print(serverdata.__len__())
+    print(serverdata.__sizeof__())
     while 1:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.bind(("0.0.0.0", 40000))
@@ -18,11 +19,11 @@ def register_thread():
         while 1:
             data = s.recvfrom(buffersize)
             decoded = data[0].decode("utf-8")
-            serverdata.append(decoded)
+            serverdata.put(decoded)
             # TODO: Cleanup debugging prints
             print("Client registerd")
             print(serverdata)
-            print(serverdata.__len__())
+            print(serverdata.__sizeof__())
         s.close()
         output = open('addresses', 'w')
         for item in serverdata:
@@ -31,12 +32,16 @@ def register_thread():
 
 def fire_thread():
     """Read client IP addresses and invokes fire() passing client IP address and server IP address"""
+    used_addresses = []
     print("Fire Thread")
-    print(serverdata.__len__())
+    print(serverdata.__sizeof__())
     while 1:
-        if serverdata.__len__() > 0:
-            for address in serverdata:
+        if not serverdata.empty():
+            address = serverdata.get()
+            if address not in used_addresses:
                 f.fire(address, sipserver)
+            used_addresses.append(address)
+
 
 try:
     opts, args = getopt.getopt(sys.argv[1:], "h:s:")
