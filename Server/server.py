@@ -7,6 +7,7 @@ sipserver = ""
 
 
 def register_thread():
+    """Provide UDP port awaiting client IP addresses and processing them into serverdata"""
     global serverdata
     print("Register Thread")
     print(serverdata.__len__())
@@ -29,6 +30,7 @@ def register_thread():
 
 
 def fire_thread():
+    """Read client IP addresses and invokes fire() passing client IP address and server IP address"""
     print("Fire Thread")
     print(serverdata.__len__())
     while 1:

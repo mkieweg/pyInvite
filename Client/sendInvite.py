@@ -4,6 +4,7 @@ import socket
 class SendInvite:
     @staticmethod
     def fire(target_ip):
+        """Send a SIP invite to the SIP server"""
         message = "INVITE sip:bob@biloxi.com SIP/2.0\n"
         message += "Via: SIP/2.0/UDP pc33.atlanta.com;branch=z9hG4bK776asdhds\n"
         message += "Max-Forwards: 70\n"
