@@ -37,23 +37,22 @@ def fire_thread():
         if serverdata.__len__() > 0:
             for address in serverdata:
                 f.fire(address, sipserver)
-            print(serverdata)
 
 try:
     opts, args = getopt.getopt(sys.argv[1:], "h:s:")
 except getopt.GetoptError as e:
-    print("Usage: client.py -s <ip of sip server> without brackets")
-    print("Use client.py -h for help")
+    print("Usage: server.py -s <ip of sip server> without brackets")
+    print("Use server.py -h for help")
     sys.exit(2)
 if opts.__len__() is 0:
-    print("Usage: client.py -s <ip of sip server> without brackets")
-    print("Use client.py -h for help")
+    print("Usage: server.py -s <ip of sip server> without brackets")
+    print("Use server.py -h for help")
     sys.exit(2)
 for o, a in opts:
     if o == '-s':
         sipserver = a
     elif o == '-h':
-        print("Usage: client.py -s <serveraddress> without brackets")
+        print("Usage: server.py -s <serveraddress> without brackets")
         sys.exit(0)
 register_thread_init = threading.Thread(target=register_thread)
 fire_thread_init = threading.Thread(target=fire_thread)
