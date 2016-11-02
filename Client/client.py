@@ -18,7 +18,7 @@ if opts.__len__() is 0:
 for o, a in opts:
     if o == '-s':
         serveraddress = a
-    if o == 'i':
+    if o == '-i':
         local_ip = a
     elif o == '-h':
         print("Usage: client.py -s <serveraddress> without brackets")
