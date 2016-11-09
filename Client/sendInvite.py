@@ -1,4 +1,4 @@
-import socket
+import generatePacket
 
 
 class SendInvite:
@@ -12,5 +12,5 @@ class SendInvite:
         message += "From: Alice <sip:alice@atlanta.com>;tag=1928301774\n"
         message += "Call-ID: a84b4c76e66710@pc33.atlanta.com\n"
         message += "CSeq: 314159 INVITE\n\n"
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.sendto(bytes(message,'utf8'), (target_ip, 5060))
+        gp = generatePacket.GeneratePacket()
+        gp.generate(target_ip, message)

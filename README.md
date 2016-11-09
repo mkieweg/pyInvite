@@ -21,3 +21,6 @@ client.py -s <cnc server> -i <local ip address>
 In this state it is nessecary that the server is startet before the clients. Clients register themselves by the server and there is no mechanism implemented to repeat registration after startup.
 
 After startup the bot net works autonomous
+
+##Dependencies
+pyInvinte needs acapy-python3 for raw sockets
