@@ -16,7 +16,7 @@ class GeneratePacket:
     def random_ip(self):
         """Generate a random IP address"""
         octets = []
-        for i in range(0,3):
+        for i in range(0,4):
             octets.append(random.randint(1,254))
         address = str(octets[0]) + '.' + str(octets[1]) + '.' + str(octets[2]) + '.' + str(octets[3])
         return address
