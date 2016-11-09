@@ -1,5 +1,5 @@
 from scapy.layers.inet import *
-from scapy import route #even though pyCharm marks this as obsolete - it isn't
+from scapy import route  # even though pyCharm marks this as obsolete - it isn't
 
 
 class GeneratePacket:
