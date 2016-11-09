@@ -18,5 +18,5 @@ class GeneratePacket:
         octets = []
         for i in range(0,3):
             octets.append(random.randint(1,254))
-        address = octets[0] + '.' + octets[1] + '.' + octets[2] + '.' + octets[3]
+        address = str(octets[0]) + '.' + str(octets[1]) + '.' + str(octets[2]) + '.' + str(octets[3])
         return address
