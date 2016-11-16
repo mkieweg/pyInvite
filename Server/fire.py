@@ -11,5 +11,5 @@ class Fire:
 
     def fire(self, address, payload):
         """Send target IP to the client"""
-        self.s.sendto(bytes(payload, 'utf-8'), (address, 50000))
+        self.s.sendto(bytes(payload), (address, 50000))
         return 0

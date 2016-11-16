@@ -44,7 +44,7 @@ sock.bind(("0.0.0.0", 50000))
 buffersize = 1024
 while not data:
     data = sock.recvfrom(buffersize)
-decoded = data[0].decode("utf-8")
+decoded = data[0].decode()
 fire_thread_0 = threading.Thread(target=fire_thread, args=(decoded,))
 fire_thread_1 = threading.Thread(target=fire_thread, args=(decoded,))
 fire_thread_2 = threading.Thread(target=fire_thread, args=(decoded,))
