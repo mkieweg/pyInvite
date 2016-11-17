@@ -23,4 +23,4 @@ In this state it is nessecary that the server is startet before the clients. Cli
 After startup the bot net works autonomous
 
 ##Dependencies
-pyInvinte client needs scapy-python3 for raw sockets
+pyInvinte client needs impacket for raw sockets
