@@ -1,27 +1,21 @@
-from scapy.layers.inet import *
-from scapy import route  # even though pyCharm marks this as obsolete - it isn't
+from impacket import ImpactPacket
+import randomIP
 
 
 class GeneratePacket:
-    random_array = []
+    @staticmethod
+    def generate(message, target_ip):
+        r = randomIP.RandomIP()
+        src = r.random_ip()
 
-    def __init__(self):
-        """Initialize the random array"""
-        for i in range(1,255):
-            self.random_array.append(i)
+        ip = ImpactPacket.IP()
+        ip.set_ip_src(src)
+        ip.set_ip_dst(target_ip)
 
-    def generate(self, target_ip, message):
-        """Call the random_ip and send UDP packet with payload to that ip"""
-        source_ip = self.random_ip()
-        source_port = 10000 # source port
-        destination_port = 5060 # destination port
-        spoofed_packet = IP(src=source_ip, dst=target_ip) / UDP(sport=source_port, dport=destination_port) / message
-        send(spoofed_packet)
+        udp = ImpactPacket.UDP()
+        udp.set_uh_sport(10000)
+        udp.set_uh_dport(5060)
+        udp.contains(ImpactPacket.Data(message))
 
-    def random_ip(self):
-        """Generate a random IP address"""
-        octets = []
-        for i in range(0,4):
-            octets.append(random.choice(self.random_array))
-        address = str(octets[0]) + '.' + str(octets[1]) + '.' + str(octets[2]) + '.' + str(octets[3])
-        return address
+        ip.contains(udp)
+        return ip.get_packet()

