@@ -4,7 +4,8 @@ pyInvite is a tool that is used to test how your SIP server installation reacts 
 Written entirely for academic purposeses. Use it responsibly.
 
 ##Usage
-pyInvite is written in python 3. Start programs with following parameters:
+pyInvite is written in python 2.7
+It is started with the following parameters:
 ```
 server.py -s <sip server>
   -s The sip servers IP address
