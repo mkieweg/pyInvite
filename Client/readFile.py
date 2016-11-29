@@ -1,11 +1,10 @@
 class ReadFile:
     @staticmethod
-    def read_message():
-        with open("invite.hdr") as f:
+    def read_message(path):
+        with open(path) as f:
             content = f.readlines()
         message = ""
-        for i in range(content.__sizeof__()):
+        for i in range(len(content)):
             message += content[i]
-            message += "\n"
         message += "\n"
         return message

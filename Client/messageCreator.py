@@ -11,7 +11,7 @@ class MessageCreator:
                "SUBSCRIBE", "NOTIFY", "PUBLISH", "INFO", "REFER", "MESSAGE", "UPDATE"]
     # "SIP/2.0",
     sequences = ["/UDP", "/TCP", "plain/text", "application/sdp"]
-    type = ["plain/text", "application/sdp"]
+    mime_type = ["plain/text", "application/sdp"]
     names = ["alice", "anonymous", "bob", "ralph", "bernd", "sam", "daisy", "harold",
              "charlie", "michael", "alex", "rick", "jack", "john doe", "tom", "james", "birgit"]
     limits = {"maxforward": (190, 10),  # max , min
@@ -70,6 +70,6 @@ class MessageCreator:
         m += "Call-ID: " + self.makeCallID(self.domains[0]) + "\n"  # 5
         m += "CSeq: " + str(random.randrange(1, 2000)) + " " + random.choice(self.methods) + "\n"  # 7
         tmp = str(random.randrange(20, 981))
-        m += "Content-Type: " + random.choice(type) + "\n"
+        m += "Content-Type: " + random.choice(self.mime_type) + "\n"
         m += "Content-Length: " + tmp + "\n"  # 9
         return m

