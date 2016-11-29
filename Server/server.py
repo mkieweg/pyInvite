@@ -1,6 +1,7 @@
 import Queue
 import threading, sys, getopt, socket
 import fire
+import time
 
 f = fire.Fire()
 serverdata = Queue.Queue()
@@ -60,6 +61,13 @@ for o, a in opts:
         print("Usage: server.py -s <serveraddress> without brackets")
         sys.exit(0)
 register_thread_init = threading.Thread(target=register_thread)
+register_thread_init.daemon = True
 fire_thread_init = threading.Thread(target=fire_thread)
+fire_thread_init.daemon = True
 fire_thread_init.start()
 register_thread_init.start()
+
+while True:
+    time.sleep(1)
+
+
