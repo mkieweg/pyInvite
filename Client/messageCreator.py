@@ -1,6 +1,6 @@
 import random
 import string
-from string import ascii_letters, digits
+from string import digits
 
 
 class MessageCreator:
@@ -23,7 +23,7 @@ class MessageCreator:
     def __init__(self):
         0 == 0
 
-    def makeUA(self):
+    def make_ua(self):
         ua = "sip:" + random.choice(self.names) + "@" + random.choice(self.domains)
         return ua
 
@@ -37,7 +37,7 @@ class MessageCreator:
         self.domains[0] = tag
         return tag
 
-    def makeVia(self):
+    def make_via(self):
         via = "SIP/2.0" + random.choice(self.sequences) + " "
         via += str(random.randrange(100, 170)) + "."
         via += str(random.randrange(10, 109)) + "."
@@ -51,25 +51,22 @@ class MessageCreator:
             via += random.choice(string.ascii_lowercase + digits)
         return via
 
-    def makeCallID(self, host):
-        callID = ""
+    def make_call_id(self, host):
+        call_id = ""
         r = random.randint(8, 21)
         while r != 0:
             r -= 1
-            callID += random.choice(string.ascii_lowercase + digits)
-        callID += "@" + host
-        return callID
+            call_id += random.choice(string.ascii_lowercase + digits)
+        call_id += "@" + host
+        return call_id
 
     def make_message(self):
-        target = self.makeUA()
+        target = self.make_ua()
         m = random.choice(self.methods) + " " + target + " " + "SIP/2.0" + "\n"  # 0
-        m += "Via: " + self.makeVia() + "\n"  # 1
+        m += "Via: " + self.make_via() + "\n"  # 1
         m += "Max-Forwards: " + str(random.randrange(10, 201)) + "\n"  # 2
-        m += "To: " + self.makeUA() + self.makeTag() + "\n"  # 3
+        m += "To: " + self.make_ua() + self.makeTag() + "\n"  # 3
         m += "From: " + target + "\n"  # 4
-        m += "Call-ID: " + self.makeCallID(self.domains[0]) + "\n"  # 5
+        m += "Call-ID: " + self.make_call_id(self.domains[0]) + "\n"  # 5
         m += "CSeq: " + str(random.randrange(1, 2000)) + " " + random.choice(self.methods) + "\n"  # 7
-        tmp = str(random.randrange(20, 981))
-        m += "Content-Type: " + random.choice(self.mime_type) + "\n"
-        m += "Content-Length: " + tmp + "\n"  # 9
         return m
