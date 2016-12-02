@@ -26,7 +26,7 @@ for o, a in opts:
         mflag = True
     elif o == '-h':
         print("Usage:")
-        print("dDOS operation: client.py -s <ip of cnc server> -i <local ip address> without brackets")
+        print("DDoS operation: client.py -s <ip of cnc server> -i <local ip address> without brackets")
         print("Send customized headers: client.py -m <path to header file> -s <ip of sip servery> without brackets")
         sys.exit(0)
 
