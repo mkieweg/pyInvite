@@ -1,7 +1,7 @@
-INVITE sip:bob@biloxi.com SIP/2.0
-Via: SIP/2.0/UDP pc33.atlanta.com;branch=z9hG4bK776asdhds
+INVITE sip:0615141498@141.100.71.125 SIP/2.0
+Via: SIP/2.0/UDP 141.100.71.125;branch=z9hG4bK776asdhds
 Max-Forwards: 70
-To: Bob <sip:bob@biloxi.com>
-From: Alice <sip:alice@atlanta.com>;tag=1928301774
-Call-ID: a84b4c76e66710@pc33.atlanta.com
+To: Bob <sip:0615141498@141.100.71.125>
+From: Alice <sip:0615181463@141.100.71.125>;tag=1928301774
+Call-ID: a84b4c76e66710@141.100.71.125
 CSeq: 314159 INVITE
